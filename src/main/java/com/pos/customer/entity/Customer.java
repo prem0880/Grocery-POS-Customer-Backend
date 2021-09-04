@@ -5,36 +5,62 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.sun.istack.NotNull;
-
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+//@Getter
+//@Setter
+//@ToString
 @Entity
-@Table(name="CustomerDetails")
+@Table(name="Customer")
 public class Customer {
-	@Id
-	@NotNull
-	private String id;
-	@NotNull
-	@Column(name = "customer_name")
-	private String customer_name;
-	@NotNull
-	@Column(name = "customer_email")
-	private String customer_email;
-	public String getId() {
+	
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", email=" + email + "]";
+	}
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+
+	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getCustomer_name() {
-		return customer_name;
+
+	public String getName() {
+		return name;
 	}
-	public void setCustomer_name(String customer_name) {
-		this.customer_name = customer_name;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getCustomer_email() {
-		return customer_email;
+
+	public String getEmail() {
+		return email;
 	}
-	public void setCustomer_email(String customer_email) {
-		this.customer_email = customer_email;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
+
+	@Id
+	private Long id;
+	@Column(nullable=false)
+	private String name;
+	@Column(nullable=false)
+	private String email;
+	
+	public Customer() {
+		super();
+	}
+
+	public Customer(Long id, String name, String email) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+	}
+	
 }

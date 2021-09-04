@@ -1,6 +1,7 @@
 package com.pos.customer.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,19 +9,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pos.customer.entity.Customer;
 import com.pos.customer.repository.CustomerRepository;
+import com.pos.customer.service.CustomerService;
 
 @RestController
-//@CrossOrigin(origins="http://localhost:4200")
-@RequestMapping(value="/api")
+@RequestMapping("/profile")
 
 public class CustomerController {
 	@Autowired
-	private CustomerRepository customerrepository;
+	private CustomerService customerService;
 
     
-    @PostMapping("/customers")    //validation
-    public Customer createCustomer( @RequestBody Customer customer) {
-        return customerrepository.save(customer);
+    @PostMapping("/createProfile") 
+    public ResponseEntity<String> createCustomer( @RequestBody Customer customer) {
+        return customerService.createCustomer(customer);
     }
    
 }
