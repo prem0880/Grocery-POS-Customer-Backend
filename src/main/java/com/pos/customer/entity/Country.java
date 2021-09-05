@@ -19,23 +19,25 @@ import org.hibernate.annotations.NaturalId;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name="Country")
-public class Country implements Serializable{
+@Table(name = "Country")
+public class Country implements Serializable {
 	@Id
-	@Column(name="country_code",length=8)
+	@Column(name = "country_code", length = 8)
 	private Long code;
-	@Column(name="country_name",nullable=false)
+	@Column(name = "country_name", nullable = false)
 	private String name;
-	@OneToMany(mappedBy="country",fetch=FetchType.LAZY,cascade=CascadeType.ALL,orphanRemoval=true)
+	@OneToMany(mappedBy = "country", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<State> states;
+
 	public Country(Long code, @Size(max = 10) String name) {
 		super();
 		this.code = code;
 		this.name = name;
 	}
-	
+
 }

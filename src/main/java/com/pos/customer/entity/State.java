@@ -22,23 +22,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name="State")
-public class State implements Serializable{
+@Table(name = "State")
+public class State implements Serializable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="state_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "state_id")
 	private Long id;
-	@Column(name="state_name")
+	@Column(name = "state_name")
 	private String name;
-	@ManyToOne(fetch=FetchType.LAZY,optional=false)
-	@JoinColumn(name="country_code",nullable=false)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "country_code", nullable = false)
 	@JsonIgnore
 	private Country country;
-	@OneToMany(mappedBy="state",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "state", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Address> address;
 }
