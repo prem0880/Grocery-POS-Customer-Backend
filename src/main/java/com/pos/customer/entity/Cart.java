@@ -37,7 +37,7 @@ public class Cart implements Serializable{
 	@OneToOne
 	@JoinColumn(name="phoneNumber",nullable=false,unique=true)
 	@JsonIgnore
-	  private Profile userId;
+	  private Customer userId;
 	
 	@Column(nullable=false)
 	private Double totalPrice;
@@ -45,7 +45,7 @@ public class Cart implements Serializable{
 	@Column(nullable=false)
 	private String status;
 
-	public Cart(Long id, Set<CartItem> cartItems, Profile userId, Double totalPrice, String status) {
+	public Cart(Long id, Set<CartItem> cartItems, Customer userId, Double totalPrice, String status) {
 		super();
 		this.id = id;
 		this.cartItems = cartItems;

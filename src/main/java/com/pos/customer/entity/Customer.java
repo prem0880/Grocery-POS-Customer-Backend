@@ -20,7 +20,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @Table(name="Customer")
-public class Profile {
+public class Customer {
 	
 	@OneToOne(mappedBy="userId")
 	private Cart user;
@@ -34,7 +34,7 @@ public class Profile {
 	@NotNull
 	@Email
 	private String email;
-	public Profile(Long phoneNumber, String name, String email) {
+	public Customer(Long phoneNumber, String name, String email) {
 		super();
 		this.phoneNumber = phoneNumber;
 		this.name = name;

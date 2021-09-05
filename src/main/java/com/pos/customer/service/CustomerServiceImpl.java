@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.pos.customer.entity.Cart;
 import com.pos.customer.entity.CartItem;
-import com.pos.customer.entity.Profile;
+import com.pos.customer.entity.Customer;
 import com.pos.customer.exception.CartNotFoundException;
 import com.pos.customer.repository.CartItemRepository;
 import com.pos.customer.repository.CartRepository;
@@ -33,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService{
 	
 		cart.setTotalPrice(0.00);
 		cart.setStatus("Created");
-		Profile cust=new Profile();
+		Customer cust=new Customer();
 		cust.setPhoneNumber(phoneNumber);
 		cart.setUserId(cust);
 		

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pos.customer.entity.Profile;
+import com.pos.customer.entity.Customer;
 import com.pos.customer.repository.ProfileRepository;
 import com.pos.customer.service.ProfileService;
 
@@ -20,7 +20,7 @@ public class ProfileController {
 
     
     @PostMapping("/createProfile") 
-    public ResponseEntity<String> createCustomer( @RequestBody Profile customer) {
+    public ResponseEntity<String> createCustomer( @RequestBody Customer customer) {
         return customerService.createCustomer(customer);
     }
    

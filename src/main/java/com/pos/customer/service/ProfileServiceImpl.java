@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.pos.customer.entity.Profile;
+import com.pos.customer.entity.Customer;
 import com.pos.customer.repository.ProfileRepository;
 
 @Service
@@ -19,7 +19,7 @@ public class ProfileServiceImpl implements ProfileService {
 	private ProfileRepository customerRepository;
 
 	@Override
-	public ResponseEntity<String> createCustomer( Profile customer) {
+	public ResponseEntity<String> createCustomer( Customer customer) {
 		 customerRepository.save(customer);
 		 return new ResponseEntity<String>("Customer profile is created",new HttpHeaders(),HttpStatus.OK);
 	}
