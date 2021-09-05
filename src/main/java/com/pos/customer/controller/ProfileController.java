@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pos.customer.entity.Customer;
-import com.pos.customer.repository.CustomerRepository;
-import com.pos.customer.service.CustomerService;
+import com.pos.customer.repository.ProfileRepository;
+import com.pos.customer.service.ProfileService;
 
 @RestController
 @RequestMapping("/profile")
 
-public class CustomerController {
+public class ProfileController {
 	@Autowired
-	private CustomerService customerService;
+	private ProfileService customerService;
 
-    
     @PostMapping("/createProfile") 
     public ResponseEntity<String> createCustomer( @RequestBody Customer customer) {
         return customerService.createCustomer(customer);
     }
+    
    
 }

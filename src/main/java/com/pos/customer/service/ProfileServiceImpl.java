@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.pos.customer.entity.Customer;
-import com.pos.customer.repository.CustomerRepository;
+import com.pos.customer.repository.ProfileRepository;
 
 @Service
-public class CustomerServiceImpl implements CustomerService {
+public class ProfileServiceImpl implements ProfileService {
 
 	@Autowired
-	private CustomerRepository customerRepository;
+	private ProfileRepository customerRepository;
 
 	@Override
 	public ResponseEntity<String> createCustomer( Customer customer) {
