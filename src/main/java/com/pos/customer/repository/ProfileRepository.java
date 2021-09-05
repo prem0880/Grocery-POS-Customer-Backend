@@ -4,10 +4,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.pos.customer.entity.Customer;
+import com.pos.customer.entity.Profile;
 
 @Repository
 @Transactional
-public interface CustomerRepository extends JpaRepository<Customer,Long>{
+public interface ProfileRepository extends JpaRepository<Profile,Long>{
 
 }
