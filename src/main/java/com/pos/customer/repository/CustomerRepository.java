@@ -8,6 +8,6 @@ import com.pos.customer.entity.Customer;
 
 @Repository
 @Transactional
-public interface CustomerRepository extends JpaRepository<Customer,Long>{
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
 }
