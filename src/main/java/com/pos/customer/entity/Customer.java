@@ -31,6 +31,7 @@ public class Customer {
 	
 	@OneToOne(mappedBy="userId")
 	private Cart user;
+	
 	@Id
 	@Column(length = 10)
 	private Long phoneNumber;

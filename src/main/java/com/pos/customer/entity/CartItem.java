@@ -27,7 +27,7 @@ import lombok.ToString;
 public class CartItem implements Serializable {
 
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long autoId;
 	
 	@ManyToOne
