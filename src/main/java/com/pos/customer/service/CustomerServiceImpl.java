@@ -15,7 +15,7 @@ import com.pos.customer.entity.Customer;
 import com.pos.customer.exception.CartNotFoundException;
 import com.pos.customer.repository.CartItemRepository;
 import com.pos.customer.repository.CartRepository;
-import com.pos.customer.repository.ProfileRepository;
+import com.pos.customer.repository.CustomerRepository;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService{
 	private CartItemRepository cartItemRepository;
 	
 	@Autowired
-	private ProfileRepository profileRepository;
+	private CustomerRepository profileRepository;
 	@Override
 	public ResponseEntity<String> addCart(Long phoneNumber,Cart cart) {
 	
