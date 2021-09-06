@@ -1,5 +1,8 @@
 package com.pos.customer.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pos.customer.entity.Customer;
+import com.pos.customer.repository.CustomerRepository;
 import com.pos.customer.entity.Address;
 import com.pos.customer.entity.Country;
 import com.pos.customer.entity.Customer;
@@ -25,6 +30,12 @@ public class ProfileController {
 	@Autowired
 	private ProfileService customerService;
 
+    
+//    @PostMapping("/createProfile") 
+//    public ResponseEntity<String> createCustomer( @RequestBody Customer customer) {
+//        return customerService.createCustomer(customer);
+//    }
+	
 	@PostMapping("/addCountry")
 	public ResponseEntity<String> addCountry(@RequestBody Country countryDetails) {
 		return customerService.addCountry(countryDetails);
@@ -72,5 +83,6 @@ public class ProfileController {
 	public ResponseEntity<String> deActivateProfile(@PathVariable("phoneNo") Long phoneNo, String status) {
 		return customerService.deActivateProfile(phoneNo, "Deactivated");
 	}
+   
 
 }
