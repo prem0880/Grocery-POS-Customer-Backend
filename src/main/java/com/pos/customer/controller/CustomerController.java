@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pos.customer.entity.Cart;
 import com.pos.customer.entity.CartItem;
 import com.pos.customer.exception.CartNotFoundException;
+import com.pos.customer.exception.ProductIdNotFoundException;
 import com.pos.customer.service.CustomerService;
 
 @RestController
@@ -71,6 +72,19 @@ public class CustomerController {
 	{
 		return cartService.deleteCart(id);
 	}
+	
+	@PutMapping("/customer/{id}/{productId}/updateItem/{quantity}/{price}")
+	public ResponseEntity<String> updateItem(@PathVariable("id") Long id,@PathVariable("productId") String productId, @PathVariable("quantity") Integer quantity, @PathVariable("price") Double price) throws  ProductIdNotFoundException
+	{
+		return cartService.updateItem(id,productId,quantity,price);
+	}
+	
+	@DeleteMapping("/customer/{id}/{productId}/deleteItem")
+	public ResponseEntity<String> deleteItem(@PathVariable("id") Long id,@PathVariable("productId") String productId) throws CartNotFoundException, ProductIdNotFoundException
+	{
+		return cartService.deleteItem(id,productId);
+	}
+	
 	
 //	@DeleteMapping("/customer/{id}/deleteItem")
 //	public ResponseEntity<String> deleteItem(@PathVariable("id") Long id) throws CartNotFoundException

@@ -8,11 +8,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.pos.customer.entity.Cart;
 import com.pos.customer.entity.CartItem;
 import com.pos.customer.entity.Customer;
 import com.pos.customer.exception.CartNotFoundException;
+import com.pos.customer.exception.ProductIdNotFoundException;
 import com.pos.customer.repository.CartItemRepository;
 import com.pos.customer.repository.CartRepository;
 import com.pos.customer.repository.CustomerRepository;
@@ -104,7 +106,27 @@ public class CustomerServiceImpl implements CustomerService{
 //
 //	}
 	
+
+	public ResponseEntity<String> updateItem(Long id,String productId, Integer quantity, Double price) throws  ProductIdNotFoundException {
+		
+			if(cartItemRepository.findProductId(productId)==null)
+				throw new ProductIdNotFoundException("ProductId not found");
+			else {	
+			cartItemRepository.update(productId,quantity,price);
+			return new ResponseEntity<String>("Item Details Updated Successfully!", new HttpHeaders(),HttpStatus.OK);
+		}
+	}
+	@Override
+	public ResponseEntity<String> deleteItem( Long id,String productId) throws ProductIdNotFoundException {
+		
+		if(cartItemRepository.findProductId(productId)==null)
+			throw new ProductIdNotFoundException("ProductId not found");
+		else {	
+		cartItemRepository.deleteProduct(productId);
+		return new ResponseEntity<String>("Item Deleted Successfully!", new HttpHeaders(),HttpStatus.OK);
+	}
+	}
 	
-	
+
 
 }
