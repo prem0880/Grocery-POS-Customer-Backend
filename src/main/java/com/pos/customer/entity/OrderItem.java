@@ -25,6 +25,6 @@ public class OrderItem {
 	private Double price;
 	@ManyToOne
 	private Order order;
-//	@ManyToOne
-//	private Product product;
+	@ManyToOne
+	private Product product;
 }
