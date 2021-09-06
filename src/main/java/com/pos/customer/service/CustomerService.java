@@ -3,12 +3,14 @@ package com.pos.customer.service;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.pos.customer.entity.Cart;
 import com.pos.customer.entity.CartItem;
 import com.pos.customer.exception.CartNotFoundException;
+import com.pos.customer.exception.ProductIdNotFoundException;
 
 public interface CustomerService {
 
@@ -20,9 +22,9 @@ public interface CustomerService {
 	ResponseEntity<String> addItem(Long id,CartItem cartItem);
 	 List<CartItem> getAllItem();
 	  List<CartItem> getItem(Long id) throws CartNotFoundException;
-	 // ResponseEntity<String> deleteItem(Long id) throws CartNotFoundException;
-		
-		
+	ResponseEntity<String> updateItem(Long id,String productId, Integer quantity, Double price) throws  ProductIdNotFoundException;
+	ResponseEntity<String> deleteItem(Long id,String productId) throws ProductIdNotFoundException;
+
 	
 		
 	
