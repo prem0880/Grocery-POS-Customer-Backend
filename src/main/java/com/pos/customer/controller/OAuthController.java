@@ -31,15 +31,15 @@ public class OAuthController {
 		return oauthService.createCustomerLogin(phoneNumber,oauth);
 	}
 	
-	 @GetMapping("/getLoginCredentials/{userId}")
-	 	public OAuth getLoginDetails(@PathVariable("userId") Long userId){
+	 @GetMapping("/{phoneNumber}/getLoginCredentials")
+	 	public ResponseEntity<OAuth> getLoginDetails(@PathVariable("phoneNumber") Long phoneNumber) throws CustomerIdNotFoundException{
 	 		
-		return oauthService.getLoginDetails(userId);	
+		return oauthService.getLoginDetails(phoneNumber);	
 	 	
 	 }
-	 @PutMapping("/updateLoginCredentials/{userId}/{password}")
-	 public ResponseEntity<String> updateLoginDetails(@PathVariable("userId") Long userId,@PathVariable("password") String password) throws CustomerIdNotFoundException
+	 @PutMapping("/{phoneNumber}/updateLoginCredentials/{password}")
+	 public ResponseEntity<String> updateLoginDetails(@PathVariable("phoneNumber") Long phoneNumber,@PathVariable("password") String password) throws CustomerIdNotFoundException
 	 {
-		 return oauthService.updateLoginCredentials(userId,password);
+		 return oauthService.updateLoginCredentials(phoneNumber,password);
 	 }
 }

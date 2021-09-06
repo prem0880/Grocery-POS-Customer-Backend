@@ -31,19 +31,23 @@ public class OAuthServiceImpl implements OAuthService{
                 }).orElseThrow(()->new CustomerIdNotFoundException("Customer Id Not Found,Enter valid Id!"));
 	}
 	
-	public OAuth getLoginDetails(Long userId)
+	public ResponseEntity<OAuth> getLoginDetails(Long phoneNo) throws CustomerIdNotFoundException
 	{
-		OAuth customerLoginDetail = oauthRepository.findById(userId).get();
-		return customerLoginDetail;
+		if(!profileRepository.existsById(phoneNo))
+		{
+			throw new CustomerIdNotFoundException("Customer Id Not Found,Enter the valid ID!");
+		}
+		OAuth authDetail= oauthRepository.findByPhoneNumber(phoneNo);
+		return new ResponseEntity<OAuth>(authDetail,new HttpHeaders(),HttpStatus.OK);
 	}
 	
-	public ResponseEntity<String> updateLoginCredentials(Long userId,String password) throws CustomerIdNotFoundException
+	public ResponseEntity<String> updateLoginCredentials(Long phoneNo,String password) throws CustomerIdNotFoundException
 	{
-	if(!oauthRepository.existsById(userId))
+	if(!profileRepository.existsById(phoneNo))
 	{
 		throw new CustomerIdNotFoundException("Customer Id Not Found,Enter the valid ID!");
 	}
-	oauthRepository.updateLoginById(userId,password);
+	oauthRepository.updateLoginById(phoneNo,password);
 	return new ResponseEntity<String>("Customer Login Details Updated Successfully",new HttpHeaders(),HttpStatus.OK);
 	}
 }

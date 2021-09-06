@@ -18,9 +18,11 @@ import com.pos.customer.entity.OAuth;
 public interface OAuthRepository extends JpaRepository<OAuth,Long> {
 	
 	@Modifying
-	@Query("UPDATE OAuth s SET s.password=:password where s.userId=:userId")
-	void updateLoginById(@Param("userId")Long userId,@Param("password") String password);
-    //@Query("SELECT a FROM OAuth a WHERE a.userId=:userId")
-    //List<OAuth> findByUserId(@Param("userId") long userId);
+	@Query("UPDATE OAuth s SET s.password=:password where s.customer.phoneNumber=:phoneNo")
+	void updateLoginById(@Param("phoneNo")Long phoneNo,@Param("password") String password);
+    
+	
+	@Query("SELECT a FROM OAuth a WHERE a.customer.phoneNumber=:phoneNo")
+    OAuth findByPhoneNumber(@Param("phoneNo") long phoneNo);
 
 }

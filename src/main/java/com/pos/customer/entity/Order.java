@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+/*@Entity
 @Table(name="orders")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -39,4 +39,4 @@ public class Order {
 	private Address address;
 	@ManyToOne
 	private Customer customer;
-}
+}*/

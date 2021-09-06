@@ -30,9 +30,9 @@ import lombok.ToString;
 public class OAuth implements Serializable {
 
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
-	//private Long loginId;
-	private Long userId;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long autoId;
+	//private Long userId;
 	@NotNull
 	@Size(min=8)
 	private String password;
@@ -42,10 +42,9 @@ public class OAuth implements Serializable {
 	@JoinColumn(name="phoneNumber",nullable=false)
 	@JsonIgnore
 	private Customer customer;
-	public OAuth(Long userId, @NotNull @Size(min = 8) String password, @NotNull String profileStatus,
+	public OAuth(@NotNull @Size(min = 8) String password,@NotNull String profileStatus,
 			Customer customer) {
 		super();
-		this.userId = userId;
 		this.password = password;
 		this.profileStatus = profileStatus;
 		this.customer = customer;

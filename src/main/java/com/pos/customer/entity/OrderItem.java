@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+/*@Entity
 @Table(name="orders")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,3 +28,4 @@ public class OrderItem {
 	@ManyToOne
 	private Product product;
 }
+*/
