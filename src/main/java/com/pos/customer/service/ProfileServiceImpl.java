@@ -1,6 +1,7 @@
 package com.pos.customer.service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -11,6 +12,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.pos.customer.entity.Customer;
 import com.pos.customer.repository.CustomerRepository;
+
+import com.pos.customer.entity.Address;
+import com.pos.customer.entity.Country;
+import com.pos.customer.entity.Customer;
+import com.pos.customer.entity.State;
+import com.pos.customer.repository.AddressRepository;
+import com.pos.customer.repository.CountryRepository;
+import com.pos.customer.repository.CustomerRepository;
+import com.pos.customer.repository.OAuthRepository;
+import com.pos.customer.repository.StateRepository;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {

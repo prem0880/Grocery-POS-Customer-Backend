@@ -1,5 +1,7 @@
 package com.pos.customer.entity;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,12 +19,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @Entity
-@Table(name="Customer")
+@Table(name = "Customer")
 public class Customer {
 	
 	

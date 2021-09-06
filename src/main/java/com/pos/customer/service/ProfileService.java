@@ -8,6 +8,17 @@ import com.pos.customer.entity.Customer;
 public interface ProfileService {
 	
 	//ResponseEntity<String> createCustomer(Customer customer);
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+
+import com.pos.customer.entity.Address;
+import com.pos.customer.entity.Country;
+import com.pos.customer.entity.Customer;
+import com.pos.customer.entity.State;
+
+public interface ProfileService {
+
 	ResponseEntity<String> createCustomer(Customer customer);
 
 	ResponseEntity<Customer> getCustomerDetails(Long phoneNo);
