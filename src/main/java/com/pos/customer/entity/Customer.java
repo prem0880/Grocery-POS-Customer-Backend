@@ -14,6 +14,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,6 +27,11 @@ import lombok.ToString;
 @Entity
 @Table(name = "Customer")
 public class Customer {
+	
+	
+	@OneToOne(mappedBy="userId")
+	private Cart user;
+	
 	@Id
 	@Column(length = 10)
 	private Long phoneNumber;
@@ -47,4 +53,5 @@ public class Customer {
 		this.email = email;
 	}
 
+		
 }
