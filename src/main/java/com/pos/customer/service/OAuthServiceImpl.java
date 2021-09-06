@@ -21,32 +21,26 @@ public class OAuthServiceImpl implements OAuthService{
 	@Autowired
 	private OAuthRepository oauthRepository;
 	
-	public ResponseEntity<String> createCustomerLogin(Long phoneNo,OAuth oauth) throws CustomerIdNotFoundException
+	public ResponseEntity<String> createCustomerLogin(Long phoneNo,OAuth oauth) 
 	{
 		return profileRepository.findById(phoneNo).
 				map(customer->{
 				     oauth.setCustomer(customer);
 					 oauthRepository.save(oauth);
                     return new ResponseEntity<String>("Customer Login Details added successfully!", new HttpHeaders(), HttpStatus.OK);
-                }).orElseThrow(()->new CustomerIdNotFoundException("Customer Id Not Found,Enter valid Id!"));
+                }).orElse(new ResponseEntity<String>("Customer Not Found With" + " " + phoneNo + "!", new HttpHeaders(),
+        				HttpStatus.OK));
 	}
 	
-	public ResponseEntity<OAuth> getLoginDetails(Long phoneNo) throws CustomerIdNotFoundException
+	public ResponseEntity<OAuth> getLoginDetails(Long phoneNo) 
 	{
-		if(!profileRepository.existsById(phoneNo))
-		{
-			throw new CustomerIdNotFoundException("Customer Id Not Found,Enter the valid ID!");
-		}
+		
 		OAuth authDetail= oauthRepository.findByPhoneNumber(phoneNo);
 		return new ResponseEntity<OAuth>(authDetail,new HttpHeaders(),HttpStatus.OK);
 	}
 	
-	public ResponseEntity<String> updateLoginCredentials(Long phoneNo,String password) throws CustomerIdNotFoundException
+	public ResponseEntity<String> updateLoginCredentials(Long phoneNo,String password) 
 	{
-	if(!profileRepository.existsById(phoneNo))
-	{
-		throw new CustomerIdNotFoundException("Customer Id Not Found,Enter the valid ID!");
-	}
 	oauthRepository.updateLoginById(phoneNo,password);
 	return new ResponseEntity<String>("Customer Login Details Updated Successfully",new HttpHeaders(),HttpStatus.OK);
 	}

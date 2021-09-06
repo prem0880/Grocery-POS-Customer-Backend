@@ -9,7 +9,7 @@ import com.pos.customer.entity.OAuth;
 import com.pos.customer.exception.CustomerIdNotFoundException;
 
 public interface OAuthService {
-	ResponseEntity<String> createCustomerLogin(Long phoneNo,OAuth oauth) throws CustomerIdNotFoundException;
-	ResponseEntity<OAuth> getLoginDetails(Long phoneNo) throws CustomerIdNotFoundException;
-	ResponseEntity<String> updateLoginCredentials(Long phoneNo,String password) throws CustomerIdNotFoundException;
+	ResponseEntity<String> createCustomerLogin(Long phoneNo,OAuth oauth) ;
+	ResponseEntity<OAuth> getLoginDetails(Long phoneNo) ;
+	ResponseEntity<String> updateLoginCredentials(Long phoneNo,String password) ;
 }
