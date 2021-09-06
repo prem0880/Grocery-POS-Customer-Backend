@@ -37,10 +37,10 @@ public class Customer {
 	@NotNull
 	@Email
 	private String email;
-//	@OneToOne(fetch = FetchType.LAZY, mappedBy = "customer")
-//	private OAuth oauth;
-//	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-//	private Set<Address> addresses;
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "customer")
+	private OAuth oauth;
+	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Address> addresses;
 
 	public Customer(Long phoneNumber, String name, String email) {
 		super();
