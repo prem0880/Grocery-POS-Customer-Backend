@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -19,34 +20,28 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 @Entity
-@Table(name="OAuth")
-public class OAuth implements Serializable {
-
+@Table(name = "Address")
+public class Address implements Serializable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long autoId;
-	@NotNull
-	@Size(min=8)
-	private String password;
-	@NotNull
-	private String profileStatus;
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="phoneNumber",nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@Column(name = "address_line", nullable = false)
+	private String addressLine;
+	@Column(name = "address_city", nullable = false)
+	private String city;
+	@Column(name = "address_pincode", nullable = false, length = 6)
+	private Long pinCode;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "state_id", nullable = false)
+	@JsonIgnore
+	private State state;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "customer_id", nullable = false)
 	@JsonIgnore
 	private Customer customer;
-	public OAuth(@NotNull @Size(min = 8) String password,@NotNull String profileStatus,
-			Customer customer) {
-		super();
-		this.password = password;
-		this.profileStatus = profileStatus;
-		this.customer = customer;
-	}
-	
 }

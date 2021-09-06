@@ -14,13 +14,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/*@Entity
+@Entity
 @Table(name="orders")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class Order {
-	@Id @GeneratedValue @Column(name="order_id")
+	@Id
+	@GeneratedValue
+	@Column(name="order_id")
 	private Integer id;
 	@Column(name="order_date")
 	private LocalDate date;
@@ -34,9 +36,9 @@ public class Order {
 	private String status;
 	@Column(name="order_tracking")
 	private String tracking;
-	
 	@ManyToOne
 	private Address address;
 	@ManyToOne
 	private Customer customer;
-}*/
+}
+

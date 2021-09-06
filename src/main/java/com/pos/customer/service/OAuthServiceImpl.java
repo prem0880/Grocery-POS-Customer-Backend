@@ -1,9 +1,7 @@
 package com.pos.customer.service;
 
+
 import java.util.List;
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -43,5 +41,5 @@ public class OAuthServiceImpl implements OAuthService{
 	{
 	oauthRepository.updateLoginById(phoneNo,password);
 	return new ResponseEntity<String>("Customer Login Details Updated Successfully",new HttpHeaders(),HttpStatus.OK);
-	}
+    }
 }
