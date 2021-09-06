@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.pos.customer.entity.Customer;
 import com.pos.customer.repository.CustomerRepository;
 import com.pos.customer.entity.Address;
@@ -31,20 +30,14 @@ public class ProfileController {
 	@Autowired
 	private ProfileService customerService;
 
-    
-//    @PostMapping("/createProfile") 
-//    public ResponseEntity<String> createCustomer( @RequestBody Customer customer) {
-//        return customerService.createCustomer(customer);
-//    }
-	
+    @PostMapping("/createProfile") 
+    public ResponseEntity<String> createCustomer( @RequestBody Customer customer) {
+        return customerService.createCustomer(customer);
+    }
+    	
 	@PostMapping("/addCountry")
 	public ResponseEntity<String> addCountry(@RequestBody Country countryDetails) {
 		return customerService.addCountry(countryDetails);
-	}
-
-	@PostMapping("/createProfile")
-	public ResponseEntity<String> createCustomer(@RequestBody Customer customer) {
-		return customerService.createCustomer(customer);
 	}
 
 	@PostMapping("/country/{countryCode}/addState")
