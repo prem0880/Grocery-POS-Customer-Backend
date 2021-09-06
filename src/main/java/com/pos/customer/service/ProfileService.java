@@ -5,9 +5,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.pos.customer.entity.Customer;
 
-public interface ProfileService {
-	
-	//ResponseEntity<String> createCustomer(Customer customer);
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
