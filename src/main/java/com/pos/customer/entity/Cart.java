@@ -28,7 +28,7 @@ import lombok.ToString;
 public class Cart implements Serializable{
 
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
 	@OneToMany(mappedBy="cartId")
