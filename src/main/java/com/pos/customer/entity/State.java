@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,9 +29,9 @@ public class State{
 	@Column(name = "state_name")
 	private String name;
 	
-	@ManyToOne @JoinColumn(name = "country_id")
+	@ManyToOne @JoinColumn(name = "country_id") @JsonIgnore
 	private Country country;
 	
-	@OneToMany(mappedBy="state")
+	@OneToMany(mappedBy="state") @JsonIgnore
 	private List<Address> addresses;
 }

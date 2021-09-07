@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,15 +35,15 @@ public class Customer {
 	@OneToOne(mappedBy = "customer")
 	private OAuth oauth;
 	
-	@OneToOne(mappedBy="customer")
+	@OneToOne(mappedBy="customer") @JsonIgnore
 	private Wishlist wishlist;
 	
-	@OneToOne(mappedBy="customer")
+	@OneToOne(mappedBy="customer") @JsonIgnore
 	private Cart cart;
 	
-	@OneToMany(mappedBy = "customer")
+	@OneToMany(mappedBy = "customer") @JsonIgnore
 	private List<Address> addresses;
 	
-	@OneToMany(mappedBy="customer")
+	@OneToMany(mappedBy="customer") @JsonIgnore
 	private List<Order> orders;
 }

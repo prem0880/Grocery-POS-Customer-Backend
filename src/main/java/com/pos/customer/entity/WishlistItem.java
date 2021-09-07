@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +26,6 @@ public class WishlistItem {
 	@ManyToOne @JoinColumn(name="product_id")
 	private Product product;
 	
-	@ManyToOne @JoinColumn(name="wishlist_id")
+	@ManyToOne @JoinColumn(name="wishlist_id") @JsonIgnore
 	private Wishlist wishlist;
 }

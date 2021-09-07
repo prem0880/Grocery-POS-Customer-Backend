@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,9 +29,9 @@ public class OrderItem {
 	@Column(name="order_item_price")
 	private Double price;
 	
-	@ManyToOne @JoinColumn(name="order_id")
+	@ManyToOne @JoinColumn(name="order_id") @JsonIgnore
 	private Order order;
 	
-	@ManyToOne @JoinColumn(name="product_id")
+	@ManyToOne @JoinColumn(name="product_id") @JsonIgnore
 	private Product product;
 }

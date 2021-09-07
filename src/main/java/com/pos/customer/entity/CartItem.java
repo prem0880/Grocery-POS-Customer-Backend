@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,9 +29,9 @@ public class CartItem {
 	@Column(nullable=false)
 	private Double price;
 	
-	@ManyToOne @JoinColumn(name="cart_id", nullable=false)
+	@ManyToOne @JoinColumn(name="cart_id", nullable=false) @JsonIgnore
 	private Cart cart; 
 	
-	@ManyToOne @JoinColumn(name="product_id",nullable=false)
+	@ManyToOne @JoinColumn(name="product_id",nullable=false) @JsonIgnore
 	private Product product;
 }
