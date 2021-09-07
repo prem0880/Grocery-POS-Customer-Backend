@@ -1,11 +1,9 @@
 package com.pos.customer.entity;
 
-import java.util.Set;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 
 import javax.persistence.OneToMany;
@@ -13,46 +11,37 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "Customer")
+@Table(name = "customers")
 public class Customer {
-	
-	
-	@OneToOne(mappedBy="userId")
-	private Cart user;
-	
-	@Id
-	@Column(length = 10)
+	@Id @Column(name="customer_id")
 	private Long phoneNumber;
-	@NotNull
-	@Size(max = 20)
-	private String name;
-	@NotNull
-	@Email
-	private String email;
-
 	
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "customer")
+	@Column(name="customer_name")
+	private String name;
+	
+	@Column(name="customer_email")
+	private String email;
+	
+	@OneToOne(mappedBy = "customer")
 	private OAuth oauth;
-	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<Address> addresses;
-
-	public Customer(Long phoneNumber, String name, String email) {
-		super();
-		this.phoneNumber = phoneNumber;
-		this.name = name;
-		this.email = email;
-	}
-
-		
+	
+	@OneToOne(mappedBy="customer")
+	private Wishlist wishlist;
+	
+	@OneToOne(mappedBy="customer")
+	private Cart cart;
+	
+	@OneToMany(mappedBy = "customer")
+	private List<Address> addresses;
+	
+	@OneToMany(mappedBy="customer")
+	private List<Order> orders;
 }

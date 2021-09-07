@@ -3,38 +3,18 @@ package com.pos.customer.service;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.http.ResponseEntity;
 import com.pos.customer.entity.Customer;
-import java.util.List;
+import com.pos.customer.entity.OAuth;
 import com.pos.customer.entity.Address;
-import com.pos.customer.entity.Country;
-import com.pos.customer.entity.State;
 
 public interface ProfileService {
-
-	ResponseEntity<String> createCustomer(Customer customer);
-
-	ResponseEntity<Customer> getCustomerDetails(Long phoneNo);
-
-	ResponseEntity<String> updateCustomer(Long phoneNo, Customer customerDetails);
-
-	ResponseEntity<String> addCountry(Country countryDetails);
-
-	ResponseEntity<String> addState(Long countryCode, State stateDetails);
-
-	ResponseEntity<String> addAddress(Long customerId, Long stateId, Address addressDetails);
-
-	ResponseEntity<List<Address>> getAddressByCustomerId(Long customerId);
-
-	ResponseEntity<String> activateProfile(Long phoneNo, String status);
-
-	ResponseEntity<String> deActivateProfile(Long phoneNo, String status);
-	
-	ResponseEntity<Address> updateAddress(Long customerId, Address addressDetails);
-	
-    ResponseEntity<String> deleteAddress(Long customerId);
+	Customer getProfile(Long customerId);
+	Customer updateProfile(Customer customer);
+	OAuth activateProfile(OAuth oauth);
+	OAuth deactivateAccount(OAuth oauth);
+	Address addAddress(Address address);
+	Address updateAddress(Address address);
+	Address deleteAddress(Long id);
+	Address getAddress(Long addressId);
+	List<Address> getAddresses(Long profileId);
 }

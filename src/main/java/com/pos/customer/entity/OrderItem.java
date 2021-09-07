@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -11,7 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/*@Entity
+@Entity
 @Table(name="orders")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,13 +20,16 @@ import lombok.NoArgsConstructor;
 public class OrderItem {
 	@Id @GeneratedValue @Column(name="order_item_id")
 	private Integer id;
+	
 	@Column(name="order_item_quantity")
 	private Integer quantity;
+	
 	@Column(name="order_item_price")
 	private Double price;
-	@ManyToOne
+	
+	@ManyToOne @JoinColumn(name="order_id")
 	private Order order;
-//	@ManyToOne
-//	private Product product;
+	
+	@ManyToOne @JoinColumn(name="product_id")
+	private Product product;
 }
-*/
