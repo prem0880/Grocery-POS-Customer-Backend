@@ -1,32 +1,32 @@
 package com.pos.customer.entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
-@AllArgsConstructor
+
 @Entity
-@Table(name="categories")
+@Table(name="Category")
 public class Category {
-	@Id @GeneratedValue @Column(name="category_id",nullable=false)
-	private Long id;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="category_id",nullable=false)
+	private Long categoryid;
 	
 	@Column(name="category_name",nullable=false)
-	private String name;
+	private String categoryname;
 	
-	@OneToMany(mappedBy="product") @JsonIgnore
-	private List<Product> products;
 }

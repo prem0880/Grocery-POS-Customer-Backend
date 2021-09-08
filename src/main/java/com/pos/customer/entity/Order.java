@@ -7,9 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -22,34 +20,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Order {
-	@Id @GeneratedValue @Column(name="order_id")
+	@Id
+	@GeneratedValue
+	@Column(name="order_id")
 	private Integer id;
-	
 	@Column(name="order_date")
 	private LocalDate date;
-	
 	@Column(name="order_total_price")
 	private Double totalPrice;
-	
 	@Column(name="order_discount")
 	private Float discount;
-	
 	@Column(name="order_payment_mode")
 	private String modeOfPayment;
-	
 	@Column(name="order_status")
 	private String status;
-	
 	@Column(name="order_tracking")
 	private String tracking;
-	
-	@ManyToOne @JoinColumn(name="address_id")
+	@ManyToOne
 	private Address address;
-	
-	@ManyToOne @JoinColumn(name="customer_id")
+	@ManyToOne
 	private Customer customer;
-	
-	@OneToMany(mappedBy="order")
-	private List<OrderItem> orderItems;
 }
 

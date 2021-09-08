@@ -1,33 +1,52 @@
 package com.pos.customer.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Data
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@ToString
 @Entity
-@Table(name="oauths")
-public class OAuth{
-	@Id @GeneratedValue @Column(name="oauth_id")
-	private Long id;
-	
-	@OneToOne @JoinColumn(name="customer_id")
-	private Customer customer;
-	
-	@Column(name="oauth_password") @Size(min=8)
+@Table(name="OAuth")
+public class OAuth implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long autoId;
+	@NotNull
+	@Size(min=8)
 	private String password;
-	
-	@Column(name="oauth_profile_status")
+	@NotNull
 	private String profileStatus;
+	@OneToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="phoneNumber",nullable=false)
+	@JsonIgnore
+	private Customer customer;
+	public OAuth(@NotNull @Size(min = 8) String password,@NotNull String profileStatus,
+			Customer customer) {
+		super();
+		this.password = password;
+		this.profileStatus = profileStatus;
+		this.customer = customer;
+	}
+	
 }

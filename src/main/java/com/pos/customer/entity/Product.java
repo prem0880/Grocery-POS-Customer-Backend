@@ -3,34 +3,40 @@ package com.pos.customer.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+
+@ToString
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table(name="products")
+@Table(name="Product")
 public class Product {
-	@Id @GeneratedValue @Column(name="product_id")
-	private Long id;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="product_id",nullable=false)
+	private Long productid;
 	
 	@Column(name="product_name",nullable=false)
-	private String name;
+	private String productname;
 	
-	@Column(name="image_url",nullable=false)
+	@Column(name="image_url")
 	private String imageUrl;
 	
 	@Column(name="product_description",nullable=false)
 	private String description;
 	
-	@Column(name="product_mrp",nullable=false)
+	@Column(name="product_MRP",nullable=false)
 	private Double mrp;
 	
 	@Column(name="product_brand",nullable=false)
@@ -42,7 +48,7 @@ public class Product {
 	@Column(name="product_tax",nullable=false)
 	private Double tax;
 	
-	@ManyToOne @JoinColumn(name="category_id")
+	@ManyToOne
 	private Category category;
 	
 }

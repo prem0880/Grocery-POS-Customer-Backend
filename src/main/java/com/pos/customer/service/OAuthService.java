@@ -1,10 +1,17 @@
 package com.pos.customer.service;
 
-import com.pos.customer.entity.Customer;
+
+import java.util.List;
+
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.pos.customer.entity.OAuth;
 
 
 public interface OAuthService {
-	Customer login(Long userId, String password);
-	Customer register(Customer customer);
-	//boolean authorize(String token);
+	ResponseEntity<String> createCustomerLogin(Long phoneNo,OAuth oauth) ;
+	ResponseEntity<OAuth> getLoginDetails(Long phoneNo) ;
+	ResponseEntity<String> updateLoginCredentials(Long phoneNo,String password) ;
 }
