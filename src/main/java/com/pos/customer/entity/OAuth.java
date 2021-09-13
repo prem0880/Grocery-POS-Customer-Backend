@@ -26,27 +26,29 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name="OAuth")
+@Table(name = "OAuth")
 public class OAuth implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long autoId;
+	// @GeneratedValue(strategy=GenerationType.AUTO)
+	// private Long loginId;
+	private Long userId;
 	@NotNull
-	@Size(min=8)
+	@Size(min = 8)
 	private String password;
-	@NotNull
 	private String profileStatus;
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="phoneNumber",nullable=false)
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "phoneNumber", nullable = false)
 	@JsonIgnore
 	private Customer customer;
-	public OAuth(@NotNull @Size(min = 8) String password,@NotNull String profileStatus,
+
+	public OAuth(Long userId, @NotNull @Size(min = 8) String password, @NotNull String profileStatus,
 			Customer customer) {
 		super();
+		this.userId = userId;
 		this.password = password;
 		this.profileStatus = profileStatus;
 		this.customer = customer;
 	}
-	
+
 }

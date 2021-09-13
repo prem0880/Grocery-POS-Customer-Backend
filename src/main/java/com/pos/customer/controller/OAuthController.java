@@ -1,12 +1,5 @@
 package com.pos.customer.controller;
 
-import java.util.List;
-
-
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,25 +16,25 @@ import com.pos.customer.service.OAuthService;
 @RequestMapping("/login")
 public class OAuthController {
 
-	@Autowired 
+	@Autowired
 	private OAuthService oauthService;
-	
+
 	@PostMapping("/{phoneNumber}/createLogin")
-	public ResponseEntity<String> createCustomerLogin(@PathVariable("phoneNumber") Long phoneNumber,@RequestBody OAuth oauth) 
-	{
-		return oauthService.createCustomerLogin(phoneNumber,oauth);
+	public ResponseEntity<String> createCustomerLogin(@PathVariable("phoneNumber") Long phoneNumber,
+			@RequestBody OAuth oauth) {
+		return oauthService.createCustomerLogin(phoneNumber, oauth);
 	}
-	
-	 @GetMapping("/{phoneNumber}/getLoginCredentials")
-	 	public ResponseEntity<OAuth> getLoginDetails(@PathVariable("phoneNumber") Long phoneNumber) {
-	 		
-		return oauthService.getLoginDetails(phoneNumber);	
-	 	
-	 }
-	 @PutMapping("/{phoneNumber}/updateLoginCredentials/{password}")
-	 public ResponseEntity<String> updateLoginDetails(@PathVariable("phoneNumber") Long phoneNumber,@PathVariable("password") String password) 
-	 {
-		 return oauthService.updateLoginCredentials(phoneNumber,password);
-	 }
-	
+
+	@GetMapping("/getLoginCredentials/{userId}")
+	public OAuth getLoginDetails(@PathVariable("userId") Long userId) {
+
+		return oauthService.getLoginDetails(userId);
+
+	}
+
+	@PutMapping("/updateLoginCredentials/{userId}/{password}")
+	public ResponseEntity<String> updateLoginDetails(@PathVariable("userId") Long userId,
+			@PathVariable("password") String password) {
+		return oauthService.updateLoginCredentials(userId, password);
+	}
 }
